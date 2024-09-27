@@ -1,4 +1,4 @@
-using System.Collections;
+sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +15,8 @@ public class PlayerControl : MonoBehaviour
 
     public int maxHealth = 100; // Vida máxima do personagem
     public int currentHealth; // Vida atual do personagem
+
+    public float health = 100f; // Saúde do jogador
 
     // Start is called before the first frame update
     void Start()
@@ -102,4 +104,17 @@ public class PlayerControl : MonoBehaviour
 
         Debug.Log("Vida atual: " + vidaAtual); // Exibe a vida atual no console
     }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log("Player took damage: " + damage + ", remaining health: " + health);
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+
 }
