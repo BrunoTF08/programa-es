@@ -1,4 +1,4 @@
-sing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +18,14 @@ public class PlayerControl : MonoBehaviour
 
     public float health = 100f; // Saúde do jogador
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
          rb = GetComponent<Rigidbody>();
          currentHealth = maxHealth;
+         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,6 +45,11 @@ public class PlayerControl : MonoBehaviour
         }
 
         RotateTowardsMouse();
+
+        if (Input.GetMouseButtonDown(1)) // 1 é o botão direito do mouse
+        {
+            ExecuteAttack();
+        }
 
     }
 
@@ -116,5 +124,9 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
+     void ExecuteAttack()
+    {
+        // Executa a animação "Attack01"
+        animator.SetTrigger("Attack01");
+    }
 }
