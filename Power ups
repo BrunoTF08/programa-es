@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PowerUp : MonoBehaviour
+{
+    public int vidaParaRecuperar = 20; // Quantidade de vida que o PowerUp irá recuperar
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica se o objeto colidido é o jogador
+        if (other.CompareTag("Player"))
+        {
+            PlayerControl player = other.GetComponent<PlayerControl>();
+            if (player != null)
+            {
+                player.RecuperarVida(vidaParaRecuperar); // Recupera a vida do jogador
+                Destroy(gameObject); // Destroi o PowerUp após uso
+            }
+        }
+    }
+}
